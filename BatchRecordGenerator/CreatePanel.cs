@@ -166,64 +166,43 @@ namespace BatchRecordGenerator
             string partRefs = "SELECT partRefName FROM tblPartRef";
             string BOM = "SELECT partName FROM tblParts";
             string VIC = "SELECT vicID, vicDetails FROM tblVisInspectionCriteria WHERE vicID LIKE 'FL%' ORDER BY vicID ASC";
+            string QC = "SELECT vicID, vicDetails FROM tblVisInspectionCriteria ORDER BY vicID ASC";
 
             //SQL Commands
             SqlCommand populatePartRefs = new SqlCommand(partRefs, conn);
             SqlCommand populateBOM = new SqlCommand(BOM, conn);
             SqlCommand populateVIC = new SqlCommand(VIC, conn);
+            SqlCommand populateQC = new SqlCommand(QC, conn);
 
             //Data Tables
             DataTable partRefdt = new DataTable();
             DataTable BOMdt = new DataTable();
             DataTable VICdt = new DataTable();
+            DataTable QCdt = new DataTable();
 
             //SQL Adapters
             SqlDataAdapter partRefda = new SqlDataAdapter(populatePartRefs);
             SqlDataAdapter BOMda = new SqlDataAdapter(populateBOM);
             SqlDataAdapter VICda = new SqlDataAdapter(populateVIC);
+            SqlDataAdapter QCda = new SqlDataAdapter(populateQC);
 
 
             try
             {
                 conn.Open();
+
+                //Executes the request to the database to grab all information to populate combo boxes.
                 populateBOM.ExecuteNonQuery();
                 populatePartRefs.ExecuteNonQuery();
                 populateVIC.ExecuteNonQuery();
+                populateQC.ExecuteNonQuery();
 
+                //Fills each datatable with its corresponding data
                 BOMda.Fill(BOMdt);
                 partRefda.Fill(partRefdt);
                 VICda.Fill(VICdt);
+                QCda.Fill(QCdt);
 
-                
-                foreach (DataRow dr in VICdt.Rows)//Grabs all part reference names and inserts them in the part reference combo box
-                {
-                    visInspecCombo1.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo2.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo3.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo4.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo5.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo6.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo7.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo8.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo9.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo10.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo11.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo12.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo13.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo14.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo15.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo16.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo17.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo18.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo19.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo20.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo21.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo22.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo23.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo24.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                    visInspecCombo25.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
-                }
-                
 
                 foreach (DataRow dr in partRefdt.Rows)//Grabs all part reference names and inserts them in the part reference combo box
                 {
@@ -258,7 +237,65 @@ namespace BatchRecordGenerator
                     part24ComboBox.Items.Add(dr["partName"].ToString());
                     part25ComboBox.Items.Add(dr["partName"].ToString());
                 }
-                conn.Close();
+
+                foreach (DataRow dr in VICdt.Rows)//Grabs all part reference names and inserts them in the first-off/last-off inspection combo boxes
+                {
+                    visInspecCombo1.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo2.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo3.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo4.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo5.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo6.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo7.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo8.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo9.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo10.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo11.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo12.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo13.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo14.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo15.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo16.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo17.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo18.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo19.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo20.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo21.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo22.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo23.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo24.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    visInspecCombo25.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                }
+
+                foreach (DataRow dr in QCdt.Rows)//Grabs all part reference names and inserts them in the Q/C Sample inspection criteria combo boxes
+                {
+                    QCSCrit1.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit2.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit3.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit4.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit5.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit6.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit7.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit8.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit9.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit10.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit11.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit12.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit13.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit14.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit15.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit16.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit17.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit18.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit19.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit20.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit21.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit22.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit23.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit24.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                    QCSCrit25.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
+                }
+                    conn.Close();
             }
             catch (Exception ex)
             {
@@ -994,7 +1031,7 @@ namespace BatchRecordGenerator
         */
         private void finishButton_Click(object sender, EventArgs e)
         {
-            partDuplicatesCheck(); //Checks for duplicate parts//
+            partDuplicatesCheck(); //Checks for duplicate parts
             requiredFieldsCheck(); //Checks for blank required fields
 
             if (duplicates == true)
@@ -1026,31 +1063,132 @@ namespace BatchRecordGenerator
             {
                 partNames.Add(part1ComboBox.Text);
             }
-
+            //
             if (!string.IsNullOrEmpty(part2ComboBox.Text))
             {
                 partNames.Add(part2ComboBox.Text);
             }
-
+            //
             if (!string.IsNullOrEmpty(part3ComboBox.Text))
             {
                 partNames.Add(part3ComboBox.Text);
             }
-
+            //
             if (!string.IsNullOrEmpty(part4ComboBox.Text))
             {
                 partNames.Add(part4ComboBox.Text);
             }
-
+            //
             if (!string.IsNullOrEmpty(part5ComboBox.Text))
             {
                 partNames.Add(part5ComboBox.Text);
             }
+            //
+            if (!string.IsNullOrEmpty(part6ComboBox.Text))
+            {
+                partNames.Add(part6ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part7ComboBox.Text))
+            {
+                partNames.Add(part7ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part8ComboBox.Text))
+            {
+                partNames.Add(part8ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part9ComboBox.Text))
+            {
+                partNames.Add(part9ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part10ComboBox.Text))
+            {
+                partNames.Add(part10ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part11ComboBox.Text))
+            {
+                partNames.Add(part11ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part12ComboBox.Text))
+            {
+                partNames.Add(part12ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part13ComboBox.Text))
+            {
+                partNames.Add(part13ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part14ComboBox.Text))
+            {
+                partNames.Add(part14ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part15ComboBox.Text))
+            {
+                partNames.Add(part15ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part16ComboBox.Text))
+            {
+                partNames.Add(part16ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part17ComboBox.Text))
+            {
+                partNames.Add(part17ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part18ComboBox.Text))
+            {
+                partNames.Add(part18ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part19ComboBox.Text))
+            {
+                partNames.Add(part19ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part20ComboBox.Text))
+            {
+                partNames.Add(part20ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part21ComboBox.Text))
+            {
+                partNames.Add(part21ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part22ComboBox.Text))
+            {
+                partNames.Add(part22ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part23ComboBox.Text))
+            {
+                partNames.Add(part23ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part24ComboBox.Text))
+            {
+                partNames.Add(part24ComboBox.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(part25ComboBox.Text))
+            {
+                partNames.Add(part25ComboBox.Text);
+            }
 
             /************************************************END****************************************************/
 
-            partCount = partNames.Count();
+            partCount = partNames.Count(); // Counts the number of elements in the partNames List
 
+            /* Loops through the List and checks for duplicates*/
             for (int i = 0; i < partCount; i++)
             {
                 for (int z = 0; z < partCount; z++)
