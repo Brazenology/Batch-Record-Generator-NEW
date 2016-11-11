@@ -994,7 +994,7 @@ namespace BatchRecordGenerator
         */
         private void finishButton_Click(object sender, EventArgs e)
         {
-            partDuplicatesCheck(); //Checks for duplicate parts
+            partDuplicatesCheck(); //Checks for duplicate parts//
             requiredFieldsCheck(); //Checks for blank required fields
 
             if (duplicates == true)
