@@ -221,6 +221,7 @@
             this.Name = "HomePanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Batch Record Generator";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.HomePanel_FormClosed);
             this.Load += new System.EventHandler(this.HomePanel_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

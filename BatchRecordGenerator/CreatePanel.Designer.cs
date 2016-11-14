@@ -722,7 +722,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 212F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 248F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
             this.tableLayoutPanel3.Controls.Add(this.label68, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.label69, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.label70, 4, 0);
@@ -750,7 +750,7 @@
             // 
             this.label69.AutoSize = true;
             this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(243, 1);
+            this.label69.Location = new System.Drawing.Point(241, 1);
             this.label69.Name = "label69";
             this.label69.Padding = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.label69.Size = new System.Drawing.Size(44, 29);
@@ -762,7 +762,7 @@
             // 
             this.label70.AutoSize = true;
             this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.Location = new System.Drawing.Point(512, 1);
+            this.label70.Location = new System.Drawing.Point(510, 1);
             this.label70.Name = "label70";
             this.label70.Padding = new System.Windows.Forms.Padding(6, 10, 0, 0);
             this.label70.Size = new System.Drawing.Size(44, 26);
@@ -845,7 +845,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.93393F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.06606F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 183F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 185F));
             this.tableLayoutPanel1.Controls.Add(this.label136, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.pPartRefLabel, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.pDateLabel, 3, 1);
@@ -873,7 +873,7 @@
             // 
             this.label136.AutoSize = true;
             this.label136.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label136.Location = new System.Drawing.Point(380, 46);
+            this.label136.Location = new System.Drawing.Point(378, 46);
             this.label136.Name = "label136";
             this.label136.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.label136.Size = new System.Drawing.Size(38, 20);
@@ -884,7 +884,7 @@
             // 
             this.pPartRefLabel.AutoSize = true;
             this.pPartRefLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pPartRefLabel.Location = new System.Drawing.Point(106, 46);
+            this.pPartRefLabel.Location = new System.Drawing.Point(105, 46);
             this.pPartRefLabel.Name = "pPartRefLabel";
             this.pPartRefLabel.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.pPartRefLabel.Size = new System.Drawing.Size(62, 17);
@@ -896,7 +896,7 @@
             // 
             this.pDateLabel.AutoSize = true;
             this.pDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pDateLabel.Location = new System.Drawing.Point(380, 23);
+            this.pDateLabel.Location = new System.Drawing.Point(378, 23);
             this.pDateLabel.Name = "pDateLabel";
             this.pDateLabel.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.pDateLabel.Size = new System.Drawing.Size(62, 17);
@@ -908,7 +908,7 @@
             // 
             this.pCustNameLabel.AutoSize = true;
             this.pCustNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pCustNameLabel.Location = new System.Drawing.Point(106, 23);
+            this.pCustNameLabel.Location = new System.Drawing.Point(105, 23);
             this.pCustNameLabel.Name = "pCustNameLabel";
             this.pCustNameLabel.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.pCustNameLabel.Size = new System.Drawing.Size(62, 17);
@@ -920,7 +920,7 @@
             // 
             this.pRevNumLabel.AutoSize = true;
             this.pRevNumLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pRevNumLabel.Location = new System.Drawing.Point(380, 1);
+            this.pRevNumLabel.Location = new System.Drawing.Point(378, 1);
             this.pRevNumLabel.Name = "pRevNumLabel";
             this.pRevNumLabel.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.pRevNumLabel.Size = new System.Drawing.Size(62, 17);
@@ -932,7 +932,7 @@
             // 
             this.label67.AutoSize = true;
             this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.Location = new System.Drawing.Point(304, 46);
+            this.label67.Location = new System.Drawing.Point(302, 46);
             this.label67.Name = "label67";
             this.label67.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
             this.label67.Size = new System.Drawing.Size(40, 16);
@@ -943,7 +943,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(304, 23);
+            this.label10.Location = new System.Drawing.Point(302, 23);
             this.label10.Name = "label10";
             this.label10.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
             this.label10.Size = new System.Drawing.Size(33, 16);
@@ -954,7 +954,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(304, 1);
+            this.label9.Location = new System.Drawing.Point(302, 1);
             this.label9.Name = "label9";
             this.label9.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
             this.label9.Size = new System.Drawing.Size(54, 16);
@@ -998,7 +998,7 @@
             // 
             this.pDocNumLabel.AutoSize = true;
             this.pDocNumLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pDocNumLabel.Location = new System.Drawing.Point(106, 1);
+            this.pDocNumLabel.Location = new System.Drawing.Point(105, 1);
             this.pDocNumLabel.Name = "pDocNumLabel";
             this.pDocNumLabel.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.pDocNumLabel.Size = new System.Drawing.Size(62, 17);
@@ -3964,12 +3964,14 @@
             // 
             // orageneCombo
             // 
+            this.orageneCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.orageneCombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.orageneCombo.FormattingEnabled = true;
             this.orageneCombo.Location = new System.Drawing.Point(196, 125);
             this.orageneCombo.Name = "orageneCombo";
             this.orageneCombo.Size = new System.Drawing.Size(171, 26);
             this.orageneCombo.TabIndex = 38;
+            this.orageneCombo.SelectedIndexChanged += new System.EventHandler(this.orageneCombo_SelectedIndexChanged);
             // 
             // hibarPumpCombo
             // 
@@ -6171,6 +6173,7 @@
             this.Name = "CreatePanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create New Batch Record";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreatePanel_FormClosed);
             this.Load += new System.EventHandler(this.CreatePanel_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

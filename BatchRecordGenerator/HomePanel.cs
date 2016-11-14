@@ -43,5 +43,11 @@ namespace BatchRecordGenerator
             editPanel.Show();
             this.Hide();
         }
+
+        private void HomePanel_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //Closes the application
+            Application.Exit();
+        }
     }
 }

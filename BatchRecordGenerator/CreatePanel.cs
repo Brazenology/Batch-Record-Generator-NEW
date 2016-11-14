@@ -166,24 +166,36 @@ namespace BatchRecordGenerator
             string partRefs = "SELECT partRefName FROM tblPartRef";
             string BOM = "SELECT partName FROM tblParts";
             string VIC = "SELECT vicID, vicDetails FROM tblVisInspectionCriteria WHERE vicID LIKE 'FL%' ORDER BY vicID ASC";
+            string model = "SELECT modelName FROM tblModel";
+            string hibar = "SELECT hibarSetting FROM tblHibarPump";
+            string oragene = "SELECT orageneVol FROM tblOrageneVolumes";
             string QC = "SELECT vicID, vicDetails FROM tblVisInspectionCriteria ORDER BY vicID ASC";
 
             //SQL Commands
             SqlCommand populatePartRefs = new SqlCommand(partRefs, conn);
             SqlCommand populateBOM = new SqlCommand(BOM, conn);
             SqlCommand populateVIC = new SqlCommand(VIC, conn);
+            SqlCommand populateModel = new SqlCommand(model, conn);
+            SqlCommand populateHibar = new SqlCommand(hibar, conn);
+            SqlCommand populateOragene= new SqlCommand(oragene, conn);
             SqlCommand populateQC = new SqlCommand(QC, conn);
 
             //Data Tables
             DataTable partRefdt = new DataTable();
             DataTable BOMdt = new DataTable();
             DataTable VICdt = new DataTable();
+            DataTable modeldt = new DataTable();
+            DataTable hibardt = new DataTable();
+            DataTable oragenedt = new DataTable();
             DataTable QCdt = new DataTable();
 
             //SQL Adapters
             SqlDataAdapter partRefda = new SqlDataAdapter(populatePartRefs);
             SqlDataAdapter BOMda = new SqlDataAdapter(populateBOM);
             SqlDataAdapter VICda = new SqlDataAdapter(populateVIC);
+            SqlDataAdapter modelda = new SqlDataAdapter(populateModel);
+            SqlDataAdapter hibarda = new SqlDataAdapter(populateHibar);
+            SqlDataAdapter orageneda = new SqlDataAdapter(populateOragene);
             SqlDataAdapter QCda = new SqlDataAdapter(populateQC);
 
 
@@ -195,12 +207,18 @@ namespace BatchRecordGenerator
                 populateBOM.ExecuteNonQuery();
                 populatePartRefs.ExecuteNonQuery();
                 populateVIC.ExecuteNonQuery();
+                populateModel.ExecuteNonQuery();
+                populateHibar.ExecuteNonQuery();
+                populateOragene.ExecuteNonQuery();
                 populateQC.ExecuteNonQuery();
 
                 //Fills each datatable with its corresponding data
                 BOMda.Fill(BOMdt);
                 partRefda.Fill(partRefdt);
                 VICda.Fill(VICdt);
+                modelda.Fill(modeldt);
+                hibarda.Fill(hibardt);
+                orageneda.Fill(oragenedt);
                 QCda.Fill(QCdt);
 
 
@@ -267,6 +285,21 @@ namespace BatchRecordGenerator
                     visInspecCombo25.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
                 }
 
+                foreach (DataRow dr in modeldt.Rows)//Grabs all model names and inserts them in the model select combo box
+                {
+                    modelSelectCombo.Items.Add(dr["modelName"].ToString());
+                }
+
+                foreach (DataRow dr in hibardt.Rows)//Grabs all hibar pump settings and inserts them in the hibar pump combo box
+                {
+                    hibarPumpCombo.Items.Add(dr["hibarSetting"].ToString());
+                }
+
+                foreach (DataRow dr in oragenedt.Rows)//Grabs all oragene volumes and inserts them in the oragene volume combo box
+                {
+                    orageneCombo.Items.Add(dr["orageneVol"].ToString());
+                }
+
                 foreach (DataRow dr in QCdt.Rows)//Grabs all part reference names and inserts them in the Q/C Sample inspection criteria combo boxes
                 {
                     QCSCrit1.Items.Add(dr["vicID"].ToString() + ": " + dr["vicDetails"].ToString());
@@ -299,27 +332,30 @@ namespace BatchRecordGenerator
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Oops! Can't seem to make a connection to the database right now. Please try again later.", "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Oops! Can't seem to make a connection to the database right now. Please try again later. If the problem persists, please contact a system administrator.", "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         /********************Quick Links*************************/
         private void cancelRecordLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            //Cancels the batch record
             this.Close();
             HomePanel home = new HomePanel();
             home.Show();
         }
         /***********************END*****************************/
 
-        private void CreatePanel_Exit(object sender, EventArgs e)
+        private void CreatePanel_FormClosed(object sender, FormClosedEventArgs e)
         {
+            //Re-launches the home panel
             HomePanel home = new HomePanel();
             home.Show();
         }
 
         private void applyDateCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            //Allows user to apply a date to the label if the choose
             if (applyDateCheckBox.Checked)
             {
                 labelDatePicker.Enabled = true;
@@ -332,6 +368,7 @@ namespace BatchRecordGenerator
 
         private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
         {
+            //Allows user to access more fields if neccessary
             if (checkBox1.Checked)
             {
                 addFieldCombo1.Enabled = true;
@@ -2006,6 +2043,27 @@ namespace BatchRecordGenerator
             else
             {
                 asterisk61.Visible = false;
+            }
+        }
+
+        //Automatically selects the corresponding weigh scale procedure volume when selecting from the oragene volume combo box
+        private void orageneCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string orageneSelect = orageneCombo.Text;
+            switch (orageneSelect)
+            {
+                case "0.75 mL":
+                    radioButton1.Checked = true;
+                    break;
+                case "0.95 mL":
+                    radioButton2.Checked = true;
+                    break;
+                case "1.1 mL":
+                    radioButton5.Checked = true;
+                    break;
+                case "2.1 mL":
+                    radioButton3.Checked = true;
+                    break;
             }
         }
     }
