@@ -16,7 +16,9 @@ namespace BatchRecordGenerator
 
         //Global Variables
         int errorCount = 0;
-        bool duplicates = false;
+        bool partDuplicates = false;
+        bool vicDuplicates = false;
+        bool qcDuplicates = false;
         string connString = "Data Source=PAPALOA;Initial Catalog=BatchRecordApp;Integrated Security=True";//path to database
 
         public CreatePanel()
@@ -169,6 +171,7 @@ namespace BatchRecordGenerator
             string model = "SELECT modelName FROM tblModel";
             string hibar = "SELECT hibarSetting FROM tblHibarPump";
             string oragene = "SELECT orageneVol FROM tblOrageneVolumes";
+
             string QC = "SELECT vicID, vicDetails FROM tblVisInspectionCriteria ORDER BY vicID ASC";
 
             //SQL Commands
@@ -1063,19 +1066,29 @@ namespace BatchRecordGenerator
 
         /*
          *The finish button will first check all required input fields to ensure they have been filled out.
-         * If a field has been let blank, the corresponding error indicator will appear and the user will be notified via pop-up box.
+         *If a field has been let blank, the corresponding error indicator will appear and the user will be notified via pop-up box.
          *If there are no errors, the batch record is processed and inserted into the database.
         */
         private void finishButton_Click(object sender, EventArgs e)
         {
             partDuplicatesCheck(); //Checks for duplicate parts
+            vicDuplicatesCheck(); //Checks for duplicate vic's in the first-off/last-off inspection tab
+            qcDuplicatesCheck(); // Checks for duplicates vic's in the Q/C Sample tab
             requiredFieldsCheck(); //Checks for blank required fields
 
-            if (duplicates == true)
+            if (partDuplicates == true)
             {
                 MessageBox.Show("It appears you have duplicate parts in the Bill of Materials tab. Please review the 'BOM' tab and ensure you do not have duplicate entries.", "Duplicates Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else if (vicDuplicates == true)
+            {
+                MessageBox.Show("It appears you have duplicate entries in the First-Off/Last-Off Inspection tab. Please review the 'First-Off/Last-Off' tab and ensure you do not have duplicate entries.", "Duplicates Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
+            else if (qcDuplicates == true)
+            {
+                MessageBox.Show("It appears you have duplicate entries in the Q/C Sample tab. Please review the 'Q/C Sample' tab and ensure you do not have duplicate entries.", "Duplicates Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             else if (errorCount > 0)
             {
                 MessageBox.Show("It appears you left " + errorCount + " required field(s) blank. Please check the information you provided and fill in all fields marked with a red asterisk(*).", "Missing Fields",
@@ -1084,13 +1097,14 @@ namespace BatchRecordGenerator
             else
             {
                 //insert into database
+                MessageBox.Show("Success! Your batch record has been successfully processed.", "Success",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
 
         private void partDuplicatesCheck()
         {
-            duplicates = false;
+            partDuplicates = false;
             int partCount = 0;
             List<string> partNames = new List<string>();
             partNames.Clear();
@@ -1234,12 +1248,319 @@ namespace BatchRecordGenerator
                     {
                         if (i != z)
                         {
-                            duplicates = true;
+                            partDuplicates = true;
                         }
                     }
                 }
             }
         }
+
+        private void vicDuplicatesCheck()
+        {
+            vicDuplicates = false;
+            int vicCount = 0;
+            List<string> vicDesc = new List<string>();
+            vicDesc.Clear();
+
+            /******************************Add vic's to vicDesc Array if they are not blank**************************/
+            if (!string.IsNullOrEmpty(visInspecCombo1.Text))
+            {
+                vicDesc.Add(visInspecCombo1.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo2.Text))
+            {
+                vicDesc.Add(visInspecCombo2.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo3.Text))
+            {
+                vicDesc.Add(visInspecCombo3.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo4.Text))
+            {
+                vicDesc.Add(visInspecCombo4.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo5.Text))
+            {
+                vicDesc.Add(visInspecCombo5.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo6.Text))
+            {
+                vicDesc.Add(visInspecCombo6.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo7.Text))
+            {
+                vicDesc.Add(visInspecCombo7.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo8.Text))
+            {
+                vicDesc.Add(visInspecCombo8.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo9.Text))
+            {
+                vicDesc.Add(visInspecCombo9.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo10.Text))
+            {
+                vicDesc.Add(visInspecCombo10.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo11.Text))
+            {
+                vicDesc.Add(visInspecCombo11.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo12.Text))
+            {
+                vicDesc.Add(visInspecCombo12.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo13.Text))
+            {
+                vicDesc.Add(visInspecCombo13.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo14.Text))
+            {
+                vicDesc.Add(visInspecCombo14.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo15.Text))
+            {
+                vicDesc.Add(visInspecCombo15.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo16.Text))
+            {
+                vicDesc.Add(visInspecCombo16.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo17.Text))
+            {
+                vicDesc.Add(visInspecCombo17.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo18.Text))
+            {
+                vicDesc.Add(visInspecCombo18.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo19.Text))
+            {
+                vicDesc.Add(visInspecCombo19.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo20.Text))
+            {
+                vicDesc.Add(visInspecCombo20.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo21.Text))
+            {
+                vicDesc.Add(visInspecCombo21.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo22.Text))
+            {
+                vicDesc.Add(visInspecCombo22.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo23.Text))
+            {
+                vicDesc.Add(visInspecCombo23.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo24.Text))
+            {
+                vicDesc.Add(visInspecCombo24.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(visInspecCombo25.Text))
+            {
+                vicDesc.Add(visInspecCombo25.Text);
+            }
+
+            /************************************************END****************************************************/
+
+            vicCount = vicDesc.Count(); // Counts the number of elements in the vicDesc List
+
+            /* Loops through the List and checks for duplicates*/
+            for (int i = 0; i < vicCount; i++)
+            {
+                for (int z = 0; z < vicCount; z++)
+                {
+                    if (vicDesc[i].Equals(vicDesc[z]))
+                    {
+                        if (i != z)
+                        {
+                            vicDuplicates = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void qcDuplicatesCheck()
+        {
+            qcDuplicates = false;
+            int qcCount = 0;
+            List<string> qcDesc = new List<string>();
+            qcDesc.Clear();
+
+            /******************************Add vic's to the qcDesc Array if they are not blank**************************/
+            if (!string.IsNullOrEmpty(QCSCrit1.Text))
+            {
+                qcDesc.Add(QCSCrit1.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit2.Text))
+            {
+                qcDesc.Add(QCSCrit2.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit3.Text))
+            {
+                qcDesc.Add(QCSCrit3.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit4.Text))
+            {
+                qcDesc.Add(QCSCrit4.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit5.Text))
+            {
+                qcDesc.Add(QCSCrit5.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit6.Text))
+            {
+                qcDesc.Add(QCSCrit6.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit7.Text))
+            {
+                qcDesc.Add(QCSCrit7.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit8.Text))
+            {
+                qcDesc.Add(QCSCrit8.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit9.Text))
+            {
+                qcDesc.Add(QCSCrit9.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit10.Text))
+            {
+                qcDesc.Add(QCSCrit10.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit11.Text))
+            {
+                qcDesc.Add(QCSCrit11.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit12.Text))
+            {
+                qcDesc.Add(QCSCrit12.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit13.Text))
+            {
+                qcDesc.Add(QCSCrit13.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit14.Text))
+            {
+                qcDesc.Add(QCSCrit14.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit15.Text))
+            {
+                qcDesc.Add(QCSCrit15.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit16.Text))
+            {
+                qcDesc.Add(QCSCrit16.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit17.Text))
+            {
+                qcDesc.Add(QCSCrit17.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit18.Text))
+            {
+                qcDesc.Add(QCSCrit18.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit19.Text))
+            {
+                qcDesc.Add(QCSCrit19.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit20.Text))
+            {
+                qcDesc.Add(QCSCrit20.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit21.Text))
+            {
+                qcDesc.Add(QCSCrit21.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit22.Text))
+            {
+                qcDesc.Add(QCSCrit22.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit23.Text))
+            {
+                qcDesc.Add(QCSCrit23.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit24.Text))
+            {
+                qcDesc.Add(QCSCrit24.Text);
+            }
+            //
+            if (!string.IsNullOrEmpty(QCSCrit25.Text))
+            {
+                qcDesc.Add(QCSCrit25.Text);
+            }
+
+            /************************************************END****************************************************/
+
+            qcCount = qcDesc.Count(); // Counts the number of elements in the qcDesc List
+
+            /* Loops through the List and checks for duplicates*/
+            for (int i = 0; i < qcCount; i++)
+            {
+                for (int z = 0; z < qcCount; z++)
+                {
+                    if (qcDesc[i].Equals(qcDesc[z]))
+                    {
+                        if (i != z)
+                        {
+                            qcDuplicates = true;
+                        }
+                    }
+                }
+            }
+        }
+
 
         private void requiredFieldsCheck()
         {

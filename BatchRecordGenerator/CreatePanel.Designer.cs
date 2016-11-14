@@ -775,8 +775,8 @@
             this.tableLayoutPanel4.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.18182F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 81.81818F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.00356F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 81.99644F));
             this.tableLayoutPanel4.Controls.Add(this.pPartDescLabel, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label66, 0, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(21, 324);
@@ -790,7 +790,7 @@
             // 
             this.pPartDescLabel.AutoSize = true;
             this.pPartDescLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pPartDescLabel.Location = new System.Drawing.Point(106, 1);
+            this.pPartDescLabel.Location = new System.Drawing.Point(105, 1);
             this.pPartDescLabel.Name = "pPartDescLabel";
             this.pPartDescLabel.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
             this.pPartDescLabel.Size = new System.Drawing.Size(62, 17);
@@ -2859,11 +2859,12 @@
             // 
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(45, 464);
+            this.label45.Location = new System.Drawing.Point(24, 464);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(181, 15);
+            this.label45.Size = new System.Drawing.Size(766, 15);
             this.label45.TabIndex = 24;
-            this.label45.Text = "Quick description of this section.\r\n";
+            this.label45.Text = "Please fill in all applicable fields below. This information will be found on the" +
+    " Tube Label Insepction and Review sections of the batch record.\r\n";
             this.label45.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label46
@@ -3433,9 +3434,9 @@
             this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label58.Location = new System.Drawing.Point(18, 379);
             this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(189, 18);
+            this.label58.Size = new System.Drawing.Size(144, 18);
             this.label58.TabIndex = 62;
-            this.label58.Text = "Label Identification Number:";
+            this.label58.Text = "Label Identification #:";
             // 
             // labelIDCombo
             // 
@@ -3476,8 +3477,12 @@
             // 
             // udiReqCombo
             // 
+            this.udiReqCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.udiReqCombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.udiReqCombo.FormattingEnabled = true;
+            this.udiReqCombo.Items.AddRange(new object[] {
+            "Yes",
+            "No"});
             this.udiReqCombo.Location = new System.Drawing.Point(360, 251);
             this.udiReqCombo.Name = "udiReqCombo";
             this.udiReqCombo.Size = new System.Drawing.Size(403, 26);
@@ -3603,7 +3608,7 @@
             // 
             this.label79.AutoSize = true;
             this.label79.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label79.Location = new System.Drawing.Point(31, 424);
+            this.label79.Location = new System.Drawing.Point(18, 424);
             this.label79.Name = "label79";
             this.label79.Size = new System.Drawing.Size(328, 25);
             this.label79.TabIndex = 22;
@@ -4987,9 +4992,10 @@
             this.label130.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label130.Location = new System.Drawing.Point(26, 66);
             this.label130.Name = "label130";
-            this.label130.Size = new System.Drawing.Size(181, 15);
+            this.label130.Size = new System.Drawing.Size(640, 15);
             this.label130.TabIndex = 26;
-            this.label130.Text = "Quick description of this section.\r\n";
+            this.label130.Text = "The value selected below should be the same value found in the Oragene Volume fie" +
+    "ld under the Inspection Info. tab.";
             this.label130.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label131
