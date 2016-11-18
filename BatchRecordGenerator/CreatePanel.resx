@@ -352,7 +352,7 @@ gathered here will appear on multiple pages of the Batch Record Document.
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>The line clearance process is a collection of all parts necessary to complete the item pertaining to the batch record. Please indicate all parts necessary, a 
-brief description, and the total quantity required.
+brief description, and the total quantity required. **The Tube Label MicroScan Inspection can also be found at the bottom of this section.**
 </value>
   </data>
   <data name="label232.Text" xml:space="preserve">

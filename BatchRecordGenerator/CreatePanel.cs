@@ -171,7 +171,13 @@ namespace BatchRecordGenerator
             string model = "SELECT modelName FROM tblModel";
             string hibar = "SELECT hibarSetting FROM tblHibarPump";
             string oragene = "SELECT orageneVol FROM tblOrageneVolumes";
-
+            string sealingHeadT = "SELECT sealingHeadTemp FROM tblSealingHeadT";
+            string sealingHeadD = "SELECT sealingHeadDwell FROM tblSealingHeadD";
+            string airPressure = "SELECT airPressureAmount FROM tblAirPressure";
+            string fillToHeight = "SELECT fillToHeight FROM tblFillToHeight";
+            string tubeSym = "SELECT symbology FROM tblTubeSymbology";
+            string tubeDecode = "SELECT decodability FROM tblTubeDecodability";
+            string stabSol = "SELECT partNum FROM tblStabSol";
             string QC = "SELECT vicID, vicDetails FROM tblVisInspectionCriteria ORDER BY vicID ASC";
 
             //SQL Commands
@@ -181,6 +187,13 @@ namespace BatchRecordGenerator
             SqlCommand populateModel = new SqlCommand(model, conn);
             SqlCommand populateHibar = new SqlCommand(hibar, conn);
             SqlCommand populateOragene= new SqlCommand(oragene, conn);
+            SqlCommand populateSealingHeadT = new SqlCommand(sealingHeadT, conn);
+            SqlCommand populateSealingHeadD = new SqlCommand(sealingHeadD, conn);
+            SqlCommand populateAirPressure = new SqlCommand(airPressure, conn);
+            SqlCommand populateFillToHeight = new SqlCommand(fillToHeight, conn);
+            SqlCommand populateTubeSym = new SqlCommand(tubeSym, conn);
+            SqlCommand populateTubeDecode = new SqlCommand(tubeDecode, conn);
+            SqlCommand populateStabSol = new SqlCommand(stabSol, conn);
             SqlCommand populateQC = new SqlCommand(QC, conn);
 
             //Data Tables
@@ -190,6 +203,13 @@ namespace BatchRecordGenerator
             DataTable modeldt = new DataTable();
             DataTable hibardt = new DataTable();
             DataTable oragenedt = new DataTable();
+            DataTable sealingHeadTdt = new DataTable();
+            DataTable sealingHeadDdt = new DataTable();
+            DataTable airPressuredt = new DataTable();
+            DataTable fillToHeightdt = new DataTable();
+            DataTable tubeSymdt = new DataTable();
+            DataTable tubeDecodedt = new DataTable();
+            DataTable stabSoldt = new DataTable();
             DataTable QCdt = new DataTable();
 
             //SQL Adapters
@@ -199,6 +219,13 @@ namespace BatchRecordGenerator
             SqlDataAdapter modelda = new SqlDataAdapter(populateModel);
             SqlDataAdapter hibarda = new SqlDataAdapter(populateHibar);
             SqlDataAdapter orageneda = new SqlDataAdapter(populateOragene);
+            SqlDataAdapter sealingHeadTda = new SqlDataAdapter(populateSealingHeadT);
+            SqlDataAdapter sealingHeadDda = new SqlDataAdapter(populateSealingHeadD);
+            SqlDataAdapter airPressureda = new SqlDataAdapter(populateAirPressure);
+            SqlDataAdapter fillToHeightda = new SqlDataAdapter(populateFillToHeight);
+            SqlDataAdapter tubeSymda = new SqlDataAdapter(populateTubeSym);
+            SqlDataAdapter tubeDecodeda = new SqlDataAdapter(populateTubeDecode);
+            SqlDataAdapter stabSolda = new SqlDataAdapter(populateStabSol);
             SqlDataAdapter QCda = new SqlDataAdapter(populateQC);
 
 
@@ -213,6 +240,13 @@ namespace BatchRecordGenerator
                 populateModel.ExecuteNonQuery();
                 populateHibar.ExecuteNonQuery();
                 populateOragene.ExecuteNonQuery();
+                populateSealingHeadT.ExecuteNonQuery();
+                populateSealingHeadD.ExecuteNonQuery();
+                populateAirPressure.ExecuteNonQuery();
+                populateFillToHeight.ExecuteNonQuery();
+                populateTubeSym.ExecuteNonQuery();
+                populateTubeDecode.ExecuteNonQuery();
+                populateStabSol.ExecuteNonQuery();
                 populateQC.ExecuteNonQuery();
 
                 //Fills each datatable with its corresponding data
@@ -222,6 +256,13 @@ namespace BatchRecordGenerator
                 modelda.Fill(modeldt);
                 hibarda.Fill(hibardt);
                 orageneda.Fill(oragenedt);
+                sealingHeadTda.Fill(sealingHeadTdt);
+                sealingHeadDda.Fill(sealingHeadDdt);
+                airPressureda.Fill(airPressuredt);
+                fillToHeightda.Fill(fillToHeightdt);
+                tubeSymda.Fill(tubeSymdt);
+                tubeDecodeda.Fill(tubeDecodedt);
+                stabSolda.Fill(stabSoldt);
                 QCda.Fill(QCdt);
 
 
@@ -301,6 +342,43 @@ namespace BatchRecordGenerator
                 foreach (DataRow dr in oragenedt.Rows)//Grabs all oragene volumes and inserts them in the oragene volume combo box
                 {
                     orageneCombo.Items.Add(dr["orageneVol"].ToString());
+                }
+
+                foreach (DataRow dr in sealingHeadTdt.Rows)//Grabs all sealing head temperatures and inserts them in the sealing Head Temp combo box
+                {
+                    sealingTempCombo.Items.Add(dr["sealingHeadTemp"].ToString());
+                }
+
+                foreach (DataRow dr in sealingHeadDdt.Rows)//Grabs all sealing head dwell times and inserts them in the sealing Dwell Temp combo box
+                {
+                    sealingDwellCombo.Items.Add(dr["sealingHeadDwell"].ToString());
+                }
+
+                foreach (DataRow dr in airPressuredt.Rows)//Grabs all air pressure amounts and inserts them in the air pressure combo box
+                {
+                    airPressureCombo.Items.Add(dr["airPressureAmount"].ToString());
+                }
+
+                foreach (DataRow dr in fillToHeightdt.Rows)//Grabs all fill to heights and inserts them in the fill to height combo box
+                {
+                    fillToCombo.Items.Add(dr["fillToHeight"].ToString());
+                }
+
+                foreach (DataRow dr in tubeSymdt.Rows)//Grabs all tube barcode symbology's and inserts them in the tube barcode symbology combo box
+                {
+                    tubeSymCombo.Items.Add(dr["symbology"].ToString());
+                }
+
+
+                foreach (DataRow dr in tubeDecodedt.Rows)//Grabs all tube barcode Decodabiliies and inserts them in the tube barcode decodability combo box
+                {
+                    tubeDecodeCombo.Items.Add(dr["decodability"].ToString());
+                }
+
+
+                foreach (DataRow dr in stabSoldt.Rows)//Grabs all stabilizing solution part numbers and inserts them in the stabilizing solution combo box
+                {
+                    stabSolCombo.Items.Add(dr["partNum"].ToString());
                 }
 
                 foreach (DataRow dr in QCdt.Rows)//Grabs all part reference names and inserts them in the Q/C Sample inspection criteria combo boxes
@@ -498,6 +576,7 @@ namespace BatchRecordGenerator
         private void labelPreviewButton_Click(object sender, EventArgs e)
         {
 
+            //Allows use of symbols in the labels
             pDocNumLabel.UseMnemonic = false;
             pCustNameLabel.UseMnemonic = false;
             pPartRefLabel.UseMnemonic = false;
@@ -1078,11 +1157,11 @@ namespace BatchRecordGenerator
 
             if (partDuplicates == true)
             {
-                MessageBox.Show("It appears you have duplicate parts in the Bill of Materials tab. Please review the 'BOM' tab and ensure you do not have duplicate entries.", "Duplicates Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("It appears you have duplicate parts in the Bill of Materials. Please review the 'BOM' tab and ensure you do not have duplicate entries.", "Duplicates Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (vicDuplicates == true)
             {
-                MessageBox.Show("It appears you have duplicate entries in the First-Off/Last-Off Inspection tab. Please review the 'First-Off/Last-Off' tab and ensure you do not have duplicate entries.", "Duplicates Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("It appears you have duplicate entries in the First-Off/Last-Off Inspection. Please review the 'First-Off/Last-Off' tab and ensure you do not have duplicate entries.", "Duplicates Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             else if (qcDuplicates == true)
@@ -1109,7 +1188,7 @@ namespace BatchRecordGenerator
             List<string> partNames = new List<string>();
             partNames.Clear();
 
-            /******************************Add Parts to partNames Array if they are not blank**************************/
+            /*Add Parts to partNames Array if they are not blank*/
             if (!string.IsNullOrEmpty(part1ComboBox.Text))
             {
                 partNames.Add(part1ComboBox.Text);
@@ -1235,8 +1314,6 @@ namespace BatchRecordGenerator
                 partNames.Add(part25ComboBox.Text);
             }
 
-            /************************************************END****************************************************/
-
             partCount = partNames.Count(); // Counts the number of elements in the partNames List
 
             /* Loops through the List and checks for duplicates*/
@@ -1262,7 +1339,7 @@ namespace BatchRecordGenerator
             List<string> vicDesc = new List<string>();
             vicDesc.Clear();
 
-            /******************************Add vic's to vicDesc Array if they are not blank**************************/
+            /*Add vic's to vicDesc Array if they are not blank*/
             if (!string.IsNullOrEmpty(visInspecCombo1.Text))
             {
                 vicDesc.Add(visInspecCombo1.Text);
@@ -1388,8 +1465,6 @@ namespace BatchRecordGenerator
                 vicDesc.Add(visInspecCombo25.Text);
             }
 
-            /************************************************END****************************************************/
-
             vicCount = vicDesc.Count(); // Counts the number of elements in the vicDesc List
 
             /* Loops through the List and checks for duplicates*/
@@ -1415,7 +1490,7 @@ namespace BatchRecordGenerator
             List<string> qcDesc = new List<string>();
             qcDesc.Clear();
 
-            /******************************Add vic's to the qcDesc Array if they are not blank**************************/
+            /*Add vic's to the qcDesc Array if they are not blank*/
             if (!string.IsNullOrEmpty(QCSCrit1.Text))
             {
                 qcDesc.Add(QCSCrit1.Text);
@@ -1540,8 +1615,6 @@ namespace BatchRecordGenerator
             {
                 qcDesc.Add(QCSCrit25.Text);
             }
-
-            /************************************************END****************************************************/
 
             qcCount = qcDesc.Count(); // Counts the number of elements in the qcDesc List
 
