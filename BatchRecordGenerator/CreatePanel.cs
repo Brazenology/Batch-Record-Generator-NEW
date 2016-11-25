@@ -178,6 +178,18 @@ namespace BatchRecordGenerator
             string tubeSym = "SELECT symbology FROM tblTubeSymbology";
             string tubeDecode = "SELECT decodability FROM tblTubeDecodability";
             string stabSol = "SELECT partNum FROM tblStabSol";
+            string phv = "SELECT label FROM tblPrintHeadVerification";
+            string manu = "SELECT manufacturer FROM tblManufacturingID";
+            string fillToText = "SELECT fillToText FROM tblFillToText";
+            string fillToUpper = "SELECT fillToUpper FROM tblFillToUpper";
+            string UDIVer = "SELECT UDIVer FROM tblUDIVerification";
+            string UDIgtin = "SELECT GTIN FROM tblUDIHumanReadGTIN";
+            string fillToLower = "SELECT fillToLower FROM tblFillToLower";
+            string humanReadBarcode = "SELECT readableBarcode FROM tblHumanReadBarcode";
+            string labelStock = "SELECT labelDesign FROM tblLabelStockDesign";
+            string randomField = "SELECT randomField FROM tblRandomField";
+            string darkness = "SELECT darknessSetting FROM tblDarknessSetting";
+            string visionCam = "SELECT visionCamera FROM tblVisionCamera";
             string QC = "SELECT vicID, vicDetails FROM tblVisInspectionCriteria ORDER BY vicID ASC";
 
             //SQL Commands
@@ -194,6 +206,18 @@ namespace BatchRecordGenerator
             SqlCommand populateTubeSym = new SqlCommand(tubeSym, conn);
             SqlCommand populateTubeDecode = new SqlCommand(tubeDecode, conn);
             SqlCommand populateStabSol = new SqlCommand(stabSol, conn);
+            SqlCommand populatePHV = new SqlCommand(phv, conn);
+            SqlCommand populateManu = new SqlCommand(manu, conn);
+            SqlCommand populateFtt = new SqlCommand(fillToText, conn);
+            SqlCommand populateFtu = new SqlCommand(fillToUpper, conn);
+            SqlCommand populateUDIVer = new SqlCommand(UDIVer, conn);
+            SqlCommand populateGTIN = new SqlCommand(UDIgtin, conn);
+            SqlCommand populateFtl = new SqlCommand(fillToLower, conn);
+            SqlCommand populateHRB = new SqlCommand(humanReadBarcode, conn);
+            SqlCommand populateLabelStock = new SqlCommand(labelStock, conn);
+            SqlCommand populateRandomField = new SqlCommand(randomField, conn);
+            SqlCommand populateDarknessSetting = new SqlCommand(darkness, conn);
+            SqlCommand populateVisionCam = new SqlCommand(visionCam, conn);
             SqlCommand populateQC = new SqlCommand(QC, conn);
 
             //Data Tables
@@ -210,6 +234,18 @@ namespace BatchRecordGenerator
             DataTable tubeSymdt = new DataTable();
             DataTable tubeDecodedt = new DataTable();
             DataTable stabSoldt = new DataTable();
+            DataTable PHVdt = new DataTable();
+            DataTable manudt = new DataTable();
+            DataTable fillToTextdt = new DataTable();
+            DataTable fillToUpperdt = new DataTable();
+            DataTable UDIVerdt = new DataTable();
+            DataTable UDIgtindt = new DataTable();
+            DataTable fillToLowerdt = new DataTable();
+            DataTable HRBdt = new DataTable();
+            DataTable labelStockdt = new DataTable();
+            DataTable randomFielddt = new DataTable();
+            DataTable darknessSettingdt = new DataTable();
+            DataTable visionCamdt = new DataTable();
             DataTable QCdt = new DataTable();
 
             //SQL Adapters
@@ -226,6 +262,18 @@ namespace BatchRecordGenerator
             SqlDataAdapter tubeSymda = new SqlDataAdapter(populateTubeSym);
             SqlDataAdapter tubeDecodeda = new SqlDataAdapter(populateTubeDecode);
             SqlDataAdapter stabSolda = new SqlDataAdapter(populateStabSol);
+            SqlDataAdapter PHVda = new SqlDataAdapter(populatePHV);
+            SqlDataAdapter manuda = new SqlDataAdapter(populateManu);
+            SqlDataAdapter fttda = new SqlDataAdapter(populateFtt);
+            SqlDataAdapter ftuda = new SqlDataAdapter(populateFtu);
+            SqlDataAdapter UDIVerda = new SqlDataAdapter(populateUDIVer);
+            SqlDataAdapter UDIgtinda = new SqlDataAdapter(populateGTIN);
+            SqlDataAdapter ftlda = new SqlDataAdapter(populateFtl);
+            SqlDataAdapter HRBda = new SqlDataAdapter(populateHRB);
+            SqlDataAdapter labelStockda = new SqlDataAdapter(populateLabelStock);
+            SqlDataAdapter randomFieldda = new SqlDataAdapter(populateRandomField);
+            SqlDataAdapter darknessSettingda = new SqlDataAdapter(populateDarknessSetting);
+            SqlDataAdapter visionCamda = new SqlDataAdapter(populateVisionCam);
             SqlDataAdapter QCda = new SqlDataAdapter(populateQC);
 
 
@@ -247,6 +295,18 @@ namespace BatchRecordGenerator
                 populateTubeSym.ExecuteNonQuery();
                 populateTubeDecode.ExecuteNonQuery();
                 populateStabSol.ExecuteNonQuery();
+                populatePHV.ExecuteNonQuery();
+                populateManu.ExecuteNonQuery();
+                populateFtt.ExecuteNonQuery();
+                populateFtu.ExecuteNonQuery();
+                populateUDIVer.ExecuteNonQuery();
+                populateGTIN.ExecuteNonQuery();
+                populateFtl.ExecuteNonQuery();
+                populateHRB.ExecuteNonQuery();
+                populateLabelStock.ExecuteNonQuery();
+                populateRandomField.ExecuteNonQuery();
+                populateDarknessSetting.ExecuteNonQuery();
+                populateVisionCam.ExecuteNonQuery();
                 populateQC.ExecuteNonQuery();
 
                 //Fills each datatable with its corresponding data
@@ -263,6 +323,18 @@ namespace BatchRecordGenerator
                 tubeSymda.Fill(tubeSymdt);
                 tubeDecodeda.Fill(tubeDecodedt);
                 stabSolda.Fill(stabSoldt);
+                PHVda.Fill(PHVdt);
+                manuda.Fill(manudt);
+                fttda.Fill(fillToTextdt);
+                ftuda.Fill(fillToUpperdt);
+                UDIVerda.Fill(UDIVerdt);
+                UDIgtinda.Fill(UDIgtindt);
+                ftlda.Fill(fillToLowerdt);
+                HRBda.Fill(HRBdt);
+                labelStockda.Fill(labelStockdt);
+                randomFieldda.Fill(randomFielddt);
+                darknessSettingda.Fill(darknessSettingdt);
+                visionCamda.Fill(visionCamdt);
                 QCda.Fill(QCdt);
 
 
@@ -374,11 +446,70 @@ namespace BatchRecordGenerator
                 {
                     tubeDecodeCombo.Items.Add(dr["decodability"].ToString());
                 }
-
-
+                
                 foreach (DataRow dr in stabSoldt.Rows)//Grabs all stabilizing solution part numbers and inserts them in the stabilizing solution combo box
                 {
                     stabSolCombo.Items.Add(dr["partNum"].ToString());
+                }
+
+                foreach (DataRow dr in PHVdt.Rows)//Grabs all labels and inserts them in the print head verification combo box
+                {
+                    phvCombo.Items.Add(dr["label"].ToString());
+                }
+
+                foreach (DataRow dr in manudt.Rows)//Grabs all manufacturer ID's and inserts them in the manufacturing ID combo box
+                {
+                    manuIDCombo.Items.Add(dr["manufacturer"].ToString());
+                }
+
+                foreach (DataRow dr in fillToTextdt.Rows)//Grabs all fill to text's and inserts them in the fill to text combo box
+                {
+                    fillToTextCombo.Items.Add(dr["fillToText"].ToString());
+                }
+
+                foreach (DataRow dr in fillToUpperdt.Rows)//Grabs all fill to upper's and inserts them in the fill to upper combo box
+                {
+                    fillToUpperCombo.Items.Add(dr["fillToUpper"].ToString());
+                }
+
+                foreach (DataRow dr in UDIVerdt.Rows)//Grabs all fill to upper's and inserts them in the UDI Barcode Verification combo box
+                {
+                    udiVerCombo.Items.Add(dr["UDIVer"].ToString());
+                }
+
+                foreach (DataRow dr in UDIgtindt.Rows)//Grabs all gtin's and inserts them in the UDI Human Readable GTIN combo box
+                {
+                    gtinCombo.Items.Add(dr["GTIN"].ToString());
+                }
+
+                foreach (DataRow dr in fillToLowerdt.Rows)//Grabs all fill to lowers and inserts them in the fill to lower combo box
+                {
+                    fillToLowerCombo.Items.Add(dr["fillToLower"].ToString());
+                }
+
+                foreach (DataRow dr in HRBdt.Rows)//Grabs all readable barcode and inserts them in the HRB combo box
+                {
+                    hrbCombo.Items.Add(dr["readableBarcode"].ToString());
+                }
+
+                foreach (DataRow dr in labelStockdt.Rows)//Grabs all label designs and inserts them in the label stock design combo box
+                {
+                    labelStockCombo.Items.Add(dr["labelDesign"].ToString());
+                }
+
+                foreach (DataRow dr in randomFielddt.Rows)//Grabs all random fields and inserts them in the random field combo box
+                {
+                    randomFieldCombo.Items.Add(dr["randomField"].ToString());
+                }
+
+                foreach (DataRow dr in darknessSettingdt.Rows)//Grabs all darkness settings and inserts them in the darkness setting combo box
+                {
+                    darknessCombo.Items.Add(dr["darknessSetting"].ToString());
+                }
+
+                foreach (DataRow dr in visionCamdt.Rows)//Grabs all darkness settings and inserts them in the darkness setting combo box
+                {
+                    visionCombo.Items.Add(dr["visionCamera"].ToString());
                 }
 
                 foreach (DataRow dr in QCdt.Rows)//Grabs all part reference names and inserts them in the Q/C Sample inspection criteria combo boxes
@@ -414,6 +545,7 @@ namespace BatchRecordGenerator
             catch (Exception ex)
             {
                 MessageBox.Show("Oops! Can't seem to make a connection to the database right now. Please try again later. If the problem persists, please contact a system administrator.", "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
         }
 
@@ -466,7 +598,7 @@ namespace BatchRecordGenerator
 
         private void panel3_Paint(object sender, PaintEventArgs e)
         {
-            // Draw a Grey border around the inside of the Panel.
+            //Draw a Grey border around the inside of the Panel.
             Rectangle rect = panel3.ClientRectangle;
             rect.Width--;
             rect.Height--;
@@ -1176,7 +1308,7 @@ namespace BatchRecordGenerator
             else
             {
                 //insert into database
-                MessageBox.Show("Success! Your batch record has been successfully processed.", "Success",
+                MessageBox.Show("Success! Your batch record has been successfully processed.", "Batch Record Completed",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
